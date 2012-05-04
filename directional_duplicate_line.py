@@ -15,6 +15,7 @@ class DirectionalDuplicateLineCommand(sublime_plugin.TextCommand):
             self.duplicate(edit)
 
     def duplicate(self, edit, restoreSelections=False):
+        self.view.run_command("expand_selection", {"to": "line"})
         for region in self.view.sel():
             self.oldSelections.append(sublime.Region(region.begin(), region.end()))
             if region.empty():
